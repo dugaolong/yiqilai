@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'jiecheng'
+            keyPassword '123456'
+            storeFile file('/Users/dugaolong/csdn-git/yiqilai/app/key.jks')
+            storePassword '123456'
+        }
+    }
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+    defaultConfig {
+        applicationId "www.dugaolong.com.yiqilai"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 3
+        versionName "1.2"
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+}
+println("I'm now compiling with gradle " + project.gradle.gradleVersion);

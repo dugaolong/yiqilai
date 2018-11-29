@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_common_title"
+                style="@style/ActionBar">
+
+
+
+    <ImageView
+        android:id="@+id/image_back"
+        style="@style/ActionBar.LeftImage"
+        android:onClick="back"/>
+
+    <TextView
+        android:id="@+id/tv_common_title"
+        style="@style/ActionBar.CenterTitle"
+        android:text="标题"/>
+
+    <TextView
+        android:id="@+id/tv_right_text"
+        style="@style/ActionBar.RightText"
+        android:text="菜单"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/common_right"
+        style="@style/ActionBar.RightImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -1,0 +1,134 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- ActionBar 样式集 -->
+    <style name="ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/app_theme_color</item>
+    </style>
+    <style name="ActionBar.RightText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/selector_common_item_press</item>
+    </style>
+
+    <style name="chat_text_date_style">
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/chat_send_time_bg</item>
+    </style>
+    <style name="chat_content_date_style">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+    <style name="MMButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/mm_btn_text</item>
+        <item name="android:background">@null</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:minWidth">40dp</item>
+    </style>
+    <style name="MMLineButton" parent="@style/MMButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mm_style_two_btn_text</item>
+    </style>
+    <style name="MMLineActionButton" parent="@style/MMLineButton">
+        <item name="android:background">@drawable/btn_style_one</item>
+        <item name="android:textColor">@color/mm_style_one_btn_text</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDy">1.2</item>
+        <item name="android:shadowDx">1.2</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <!-- 标题样式 -->
+    <style name="TitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/app_theme_color1</item>
+    </style>
+    <style name="titleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginLeft">60dip</item>
+        <item name="android:layout_marginRight">60dip</item>
+    </style>
+    <style name="ActionBar.LeftImage">
+        <item name="android:layout_width">@dimen/left_back_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onBackPressed</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/back_up</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:background">@drawable/selector_common_item_press</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+    <style name="ActionBar.CenterTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="ActionBar.RightImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/selector_common_item_press</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_centerInParent">true</item>
+
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/push_popup_top_in</item>
+        <item name="android:windowExitAnimation">@anim/push_popup_top_out</item>
+    </style>
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>

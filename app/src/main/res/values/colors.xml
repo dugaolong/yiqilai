@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--主题色-->
+    <color name="app_theme_color">#000000</color>
+    <!--页面背景-->
+    <color name="layout_background">#f2f2f2</color>
+    <color name="group">#b7b2b2</color>
+    <color name="transparent">#00000000</color>
+    <!--按下效果-->
+    <color name="pressed_item">#e9e9f9</color>
+    <!--白色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="gray_txt">#FF606060</color>
+    <color name="gray_txt_light">#FFC8C8C8</color>
+
+    <color name="app_theme_color1">#3184ca</color>
+
+    <color name="gray">#808080</color>
+    <!-- layout 点击效果 -->
+    <color name="layout_down_s">#ffffff</color>
+    <color name="layout_down_n">#c0c0c0</color>
+    <color name="chatTime_color">#CECECE</color>
+    <color name="layoutbg">#DFDFDF</color>
+    <color name="hudongMsgContextTvColor">#919191</color>
+    <color name="huodong_ing">#01df64</color>
+    <color name="huodong_over">#a9a9a9</color>
+    <color name="huodong_unstart">#ff8a8a</color>
+    <color name="list_bg_border">#ffACA8A8</color>
+
+    <color name="public_corner_border_color">#B7B7B7</color>
+
+    <!-- share -->
+    <color name="share_background_51">#515151</color>
+
+</resources>
