@@ -15,9 +15,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
@@ -34,7 +34,6 @@ import android.widget.Toast;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationListener;
-import com.tencent.smtt.sdk.CookieSyncManager;
 
 import www.dugaolong.com.yiqilai.base.BaseActivity;
 
@@ -59,6 +58,7 @@ public class MainActivity extends BaseActivity {
     private String url = urlBase + "Mobilelogin.html";
     private String urlMain = urlBase + "Mobileindex.html";
     private String urlLoginOut = urlBase + "mobilelogin/logout.html";
+    private String urlLogin = urlBase + "mobilelogin.html";
 
 //    private String url_local = "http://180.76.160.67:8080/attendance/Mobilelogin.html";
 
@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity {
         //支持屏幕缩放
         webSettings.setSupportZoom(false);
         webSettings.setBuiltInZoomControls(false);
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         //配置权限
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -159,13 +159,9 @@ public class MainActivity extends BaseActivity {
         webView.setWebViewClient(new WebViewClient() {
             // 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//
+                flag = -1;
                 if (url.startsWith("http:") || url.startsWith("https:")) {
-//                    if(url.contains("index.")){
-//                        return true;
-//                    }else {
                     view.loadUrl(url);
-//                    }
                 }
                 if (url.startsWith("tel:")) {
                     makeTel(url);
@@ -173,7 +169,6 @@ public class MainActivity extends BaseActivity {
                 if (url.contains("logout")) {
                     clearCookies(mContext);
                 }
-                flag = -1;
                 return true;
             }
 
@@ -213,6 +208,10 @@ public class MainActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 removeProgress();//当加载结束时移除动画
+                if (url.contains("bilelogin.html")) {
+                    flag = 1;
+                }
+                Log.d("url", "url：" + url);
             }
 
             @Override
@@ -316,12 +315,13 @@ public class MainActivity extends BaseActivity {
         }
         return super.dispatchKeyEvent(event);
     }
+
     public void clearCookies(Context context) {
         //清空所有Cookie
-        CookieSyncManager.createInstance(context);  //Create a singleton CookieSyncManager within a context
-        CookieManager cookieManager = CookieManager.getInstance(); // the singleton CookieManager instance
-        cookieManager.removeAllCookie();// Removes all cookies.
-        CookieSyncManager.getInstance().sync(); // forces sync manager to sync now
+//        CookieSyncManager.createInstance(context);  //Create a singleton CookieSyncManager within a context
+//        CookieManager cookieManager = CookieManager.getInstance(); // the singleton CookieManager instance
+//        cookieManager.removeAllCookie();// Removes all cookies.
+//        CookieSyncManager.getInstance().sync(); // forces sync manager to sync now
 
         webView.clearCache(true);
         WebStorage.getInstance().deleteAllData(); //清空WebView的localStorage
