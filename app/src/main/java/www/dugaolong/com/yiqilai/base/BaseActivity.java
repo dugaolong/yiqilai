@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.CookieManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,12 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.smtt.sdk.CookieSyncManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import www.dugaolong.com.yiqilai.MainActivity;
 import www.dugaolong.com.yiqilai.R;
 import www.dugaolong.com.yiqilai.utils.CustomDialog;
 

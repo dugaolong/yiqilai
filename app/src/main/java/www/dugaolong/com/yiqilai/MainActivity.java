@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,11 +32,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationListener;
-
 import www.dugaolong.com.yiqilai.base.BaseActivity;
+
+import static www.dugaolong.com.yiqilai.R.id.webview;
 
 
 /**
@@ -47,30 +46,24 @@ public class MainActivity extends BaseActivity {
     private WebView webView;//系统自带的WebView
     //            private String url = "http://192.168.1.5:8080/attendance/Mobilelogin.html";
 //    private String url = "https://web.chelaile.net.cn/ch5/index.html";
-//    private String url = "http://map.baidu.com/mobile/webapp/index/index?itj=45&wtj=wi&ssid=2640bfecc0d6b5c4bdf0caafcdb70329&from=1012852s&uid=&pu=sz%40320_1004%2Cta%40iphone_2_6.0_11_9.2&bd_page_type=1";
-//    private String url = "http://www.baidu.com/";
+//    private String url = "https://map.baidu.com/mobile/webapp/index/index/?itj=45&wtj=wi&$pubpathUnescape#index/index/foo=bar/vt=map&traffic=on";
+    private String url = "https://mall.csdn.net";
+//    private String url = "https://m.baidu.com";
+    //    private String url = "http://www.baidu.com/";
 //    private String url = "https://m.amap.com";
 //    private String url = "http://ditu.amap.com/";
 //    private String url = "file:///android_asset/test.html";
 //    private String url = "http://180.76.160.67:8080/attendance/Mobilelogin.html";
 //    private String url = "http://1.85.16.226:9001/Mobilelogin.html";
     private String urlBase = "http://1.85.16.226:9002/";
-    private String url = urlBase + "Mobilelogin.html";
+    //    private String url = urlBase + "Mobilelogin.html";
     private String urlMain = urlBase + "Mobileindex.html";
     private String urlLoginOut = urlBase + "mobilelogin/logout.html";
     private String urlLogin = urlBase + "mobilelogin.html";
 
 //    private String url_local = "http://180.76.160.67:8080/attendance/Mobilelogin.html";
 
-    //声明AMapLocationClient类对象
-    public AMapLocationClient mLocationClient = null;
-    //声明定位回调监听器
-    public AMapLocationListener mLocationListener = new AMapLocationListener() {
-        @Override
-        public void onLocationChanged(AMapLocation amapLocation) {
 
-        }
-    };
     Dialog dialog;
     FrameLayout frameLayout;
     Button text;
@@ -82,6 +75,7 @@ public class MainActivity extends BaseActivity {
     private Handler mHandler = new Handler();
     private long exitTime = 0;
     private int flag = -1;
+    private SwipeRefreshLayout swipeLayout;
 
 
     @Override
@@ -91,12 +85,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.webview_layout);
         super.hideTitle(0);
         initView();
-        //初始化定位
-        mLocationClient = new AMapLocationClient(getApplicationContext());
-        //设置定位回调监听
-        mLocationClient.setLocationListener(mLocationListener);
-
-        mLocationClient.startAssistantLocation();
         webView.loadUrl(url);
         showDialog();
         reHandler();
@@ -112,7 +100,7 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
         text = (Button) findViewById(R.id.text);
-        webView = (WebView) findViewById(R.id.webview);
+        webView = (WebView) findViewById(webview);
 //        webView = new WebView(getApplicationContext());
 //        FrameLayout.LayoutParams mLayoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 //        frameLayout.addView(webView, mLayoutParams);
@@ -138,6 +126,19 @@ public class MainActivity extends BaseActivity {
         webSettings.setSupportZoom(false);
         webSettings.setBuiltInZoomControls(false);
 //        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                //重新刷新页面
+                webView.loadUrl(webView.getUrl());
+            }
+        });
+//        swipeLayout.setColorScheme(getResources().getColor(R.color.holo_blue_bright),
+//                getResources().getColor(R.color.holo_green_light), getResources().getColor(R.color.holo_orange_light),
+//                        getResources().getColor(R.color.holo_red_light));
         //配置权限
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -150,11 +151,18 @@ public class MainActivity extends BaseActivity {
                 super.onGeolocationPermissionsShowPrompt(origin, callback);
                 callback.invoke(origin, true, true);
             }
-//            @Override
+
+            //            @Override
 //            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
 //                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 //                return true;
 //            }
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                //隐藏进度条
+                swipeLayout.setRefreshing(false);
+                super.onProgressChanged(view, newProgress);
+            }
         });
         webView.setWebViewClient(new WebViewClient() {
             // 重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
@@ -212,6 +220,9 @@ public class MainActivity extends BaseActivity {
                     flag = 1;
                 }
                 Log.d("url", "url：" + url);
+                //隐藏进度条
+                swipeLayout.setRefreshing(false);
+
             }
 
             @Override
@@ -250,7 +261,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLocationClient.stopAssistantLocation();
         finishAll();
     }
 
