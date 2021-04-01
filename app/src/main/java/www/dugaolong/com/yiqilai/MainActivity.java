@@ -47,15 +47,15 @@ public class MainActivity extends BaseActivity {
     //            private String url = "http://192.168.1.5:8080/attendance/Mobilelogin.html";
 //    private String url = "https://web.chelaile.net.cn/ch5/index.html";
 //    private String url = "https://map.baidu.com/mobile/webapp/index/index/?itj=45&wtj=wi&$pubpathUnescape#index/index/foo=bar/vt=map&traffic=on";
-    private String url = "https://mall.csdn.net";
+//    private String url = "https://mall.csdn.net";
 //    private String url = "https://m.baidu.com";
     //    private String url = "http://www.baidu.com/";
 //    private String url = "https://m.amap.com";
 //    private String url = "http://ditu.amap.com/";
 //    private String url = "file:///android_asset/test.html";
 //    private String url = "http://180.76.160.67:8080/attendance/Mobilelogin.html";
-//    private String url = "http://1.85.16.226:9001/Mobilelogin.html";
-    private String urlBase = "http://1.85.16.226:9002/";
+    private String url = "http://yhkq.hwrvwd.cn:9002/Mobilelogin.html";
+    private String urlBase = "http://yhkq.hwrvwd.cn:9002/";
     //    private String url = urlBase + "Mobilelogin.html";
     private String urlMain = urlBase + "Mobileindex.html";
     private String urlLoginOut = urlBase + "mobilelogin/logout.html";
